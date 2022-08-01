@@ -6,10 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.babistone.kitumaini.R
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
 import kotlinx.android.synthetic.main.activity_signin.*
-import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.startActivityForResult
+import org.jetbrains.anko.*
+import org.jetbrains.anko.design.longSnackbar
 
 class SigninActivity : AppCompatActivity() {
     private val RC_SIGN_IN = 1
@@ -39,7 +40,20 @@ class SigninActivity : AppCompatActivity() {
             if (resultCode== Activity.RESULT_OK){
                 val progresssdialog = indeterminateProgressDialog("setting up your account")
 
+                startActivity(intentFor<HomeActivity>().newTask().clearTask())
+                progresssdialog.dismiss()
             }
+            else if (resultCode == Activity.RESULT_CANCELED){
+                if (response == null) return
+                when(response.error?.errorCode){
+                    ErrorCodes.NO_NETWORK ->
+                        longSnackbar(linearlayout,"pas d'internet")
+                    ErrorCodes.UNKNOWN_ERROR ->
+                        longSnackbar(linearlayout,"Erreur inconnue")
+                }
+
+            }
+
         }
     }
 }
