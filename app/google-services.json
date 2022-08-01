@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "611567926745",
+    "project_id": "media-4dbe5",
+    "storage_bucket": "media-4dbe5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:611567926745:android:82451a8350a7d60b05adc8",
+        "android_client_info": {
+          "package_name": "com.babistone.kitumaini"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "611567926745-a484mn3bgsdvke758roilt7hp69fpi3j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.babistone.kitumaini",
+            "certificate_hash": "209834108b83db17f270d06aadc0ffa5c4916357"
+          }
+        },
+        {
+          "client_id": "611567926745-voh23nb98vg8d797kaii20tuhku4e95c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiADyCjmPB7vNKJKsRKcgORdd4tipAoPI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "611567926745-voh23nb98vg8d797kaii20tuhku4e95c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
