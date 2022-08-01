@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Esis Forum</string>
+    <string name="res">Publication des résultats</string>
+    <string name="salama">Ecole superieure d\'informatique salama</string>
+    <string-array name="option">
+        <item>PROMOTION</item>
+        <item>Prepa</item>
+        <item>G2 GL</item>
+        <item>G2 MSI</item>
+        <item>G2 AS</item>
+        <item>G3</item>
+    </string-array>
+
+</resources>
