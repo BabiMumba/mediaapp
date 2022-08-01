@@ -13,5 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">@color/esi</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/splashscreenback
+        </item>
+    </style>
 
 </resources>
