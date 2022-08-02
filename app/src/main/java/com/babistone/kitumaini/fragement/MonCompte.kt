@@ -1,7 +1,9 @@
 package com.babistone.kitumaini.fragement
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,6 +38,15 @@ class MonCompte : Fragment() {
             }
           }
         return view
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == RC_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null){
+            val selectedImagepath = data.data
+            val selectedimage = MediaStore.Images.Media.getBitmap(activity?.contentResolver,selectedImagepath)
+
+        }
+
     }
 
 }
