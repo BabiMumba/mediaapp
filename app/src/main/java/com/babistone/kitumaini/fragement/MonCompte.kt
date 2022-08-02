@@ -95,7 +95,7 @@ class MonCompte : Fragment() {
             if (this@MonCompte.isVisible){
                 editext_name.setText(user.name)
                 edittxt_bio.setText(user.name)
-                if (!picturejustChanged && user.profipath != null )
+                //if (!picturejustChanged && user.profipath != null )
             }
         }
     }
