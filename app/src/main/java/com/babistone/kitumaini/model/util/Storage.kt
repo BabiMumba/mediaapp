@@ -16,5 +16,10 @@ object Storage {
     onsucces:(imagepath:String) -> Unit
                            ){
         val ref = currentUserref.child("profilPicture/${UUID.nameUUIDFromBytes(imagebyte)}")
+        ref.putBytes(imagebyte)
+            .addOnCanceledListener {
+                onsucces(ref.path)
+            }
     }
+    fun pathToReference(path:String) = storageInstance.getReference(path)
 }

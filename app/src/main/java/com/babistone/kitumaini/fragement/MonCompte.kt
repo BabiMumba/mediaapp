@@ -10,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.babistone.kitumaini.R
+import com.babistone.kitumaini.model.util.FirestoreUtil
+import com.babistone.kitumaini.model.util.Storage
 import kotlinx.android.synthetic.main.fragment_mon_compte.view.*
 import org.jetbrains.anko.support.v4.startActivityForResult
 import java.io.ByteArrayOutputStream
@@ -39,10 +41,19 @@ class MonCompte : Fragment() {
                 startActivityForResult(Intent.createChooser(intent,"select image"),RC_SELECT_IMAGE)
             }
             btn_save.setOnClickListener {
-                if (::selectedImage.isInitialized){
+                if (::selectedImage.isInitialized)
+                    Storage.unploadProfilPhoto(selectedImage) {imagepath ->
+                        FirestoreUtil.updateCurrentUser(editext_name.text.toString(),
+                        edittxt_bio.text.toString(),imagepath
+                            )
+                    }else
+                        FirestoreUtil.updateCurrentUser(editext_name.text.toString(),
 
-                }
+                            edittxt_bio.text.toString(),null
+                            )
+
             }
+
           }
         return view
     }
