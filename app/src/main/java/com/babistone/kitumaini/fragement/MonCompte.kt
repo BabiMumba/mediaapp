@@ -38,6 +38,11 @@ class MonCompte : Fragment() {
                 }
                 startActivityForResult(Intent.createChooser(intent,"select image"),RC_SELECT_IMAGE)
             }
+            btn_save.setOnClickListener {
+                if (::selectedImage.isInitialized){
+
+                }
+            }
           }
         return view
     }
@@ -50,7 +55,8 @@ class MonCompte : Fragment() {
             val outputStream = ByteArrayOutputStream()
             selectedimageBmp.compress(Bitmap.CompressFormat.JPEG,90,outputStream)
             selectedImage = outputStream.toByteArray()
-
+            //TODO: lead picture
+            picturejustChanged = true
         }
 
     }
