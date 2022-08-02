@@ -37,4 +37,10 @@ object FirestoreUtil {
             userFielMap["profilPicturePath"] = profilPicturepath
         currentUserDocRef.update(userFielMap)
     }
+    fun getCurrentUser(onComplet: (User) -> Unit){
+        currentUserDocRef.get()
+            .addOnSuccessListener {
+                it.toObject(User::class.java)?.let { it1 -> onComplet(it1) }
+            }
+    }
 }

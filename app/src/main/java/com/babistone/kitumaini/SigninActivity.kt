@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.babistone.kitumaini.R
+import com.babistone.kitumaini.model.util.FirestoreUtil
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
@@ -39,9 +40,12 @@ class SigninActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode== Activity.RESULT_OK){
                 val progresssdialog = indeterminateProgressDialog("setting up your account")
+                FirestoreUtil.initCurrentUserIffirstTime {
+                    startActivity(intentFor<HomeActivity>().newTask().clearTask())
+                    progresssdialog.dismiss()
+                }
 
-                startActivity(intentFor<HomeActivity>().newTask().clearTask())
-                progresssdialog.dismiss()
+
             }
             else if (resultCode == Activity.RESULT_CANCELED){
                 if (response == null) return
