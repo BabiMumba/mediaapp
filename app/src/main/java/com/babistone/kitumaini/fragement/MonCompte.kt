@@ -1,5 +1,6 @@
 package com.babistone.kitumaini.fragement
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
@@ -10,9 +11,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.babistone.kitumaini.R
+import com.babistone.kitumaini.SigninActivity
 import com.babistone.kitumaini.model.util.FirestoreUtil
 import com.babistone.kitumaini.model.util.Storage
+import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.data.model.User
+import kotlinx.android.synthetic.main.fragment_mon_compte.*
 import kotlinx.android.synthetic.main.fragment_mon_compte.view.*
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.newTask
+import org.jetbrains.anko.support.v4.intentFor
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.startActivityForResult
 import java.io.ByteArrayOutputStream
 
@@ -23,6 +32,7 @@ class MonCompte : Fragment() {
     private lateinit var selectedImage:ByteArray
     private var picturejustChanged = false
 
+    @SuppressLint("UseRequireInsteadOfGet")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,6 +63,13 @@ class MonCompte : Fragment() {
                             )
 
             }
+            btn_deconnecter.setOnClickListener {
+                AuthUI.getInstance()
+                    .signOut(this@MonCompte.context!!)
+                    .addOnSuccessListener {
+                        startActivity(intentFor<SigninActivity>().newTask().clearTask())
+                    }
+            }
 
           }
         return view
@@ -70,6 +87,16 @@ class MonCompte : Fragment() {
             picturejustChanged = true
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        FirestoreUtil.getCurrentUser {user ->
+            if (this@MonCompte.isVisible){
+                editext_name.setText(user.name)
+                edittxt_bio.setText(user.name)
+            }
+        }
     }
 
 }
