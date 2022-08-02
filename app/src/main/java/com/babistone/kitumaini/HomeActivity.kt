@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.babistone.kitumaini.R
+import com.babistone.kitumaini.fragement.MonCompte
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -16,6 +17,7 @@ class HomeActivity : AppCompatActivity() {
 
                 }
                 R.id.my_count -> {
+                    replaceFragment(MonCompte())
 
                 }
                 else -> false
@@ -26,7 +28,8 @@ class HomeActivity : AppCompatActivity() {
     }
     private fun replaceFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
-
+        replace(R.id.fragment_layout,fragment)
+            commit()
         }
     }
 }
