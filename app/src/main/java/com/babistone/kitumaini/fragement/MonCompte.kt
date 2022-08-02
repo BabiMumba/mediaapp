@@ -2,6 +2,7 @@ package com.babistone.kitumaini.fragement
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import com.babistone.kitumaini.R
 import kotlinx.android.synthetic.main.fragment_mon_compte.view.*
 import org.jetbrains.anko.support.v4.startActivityForResult
+import java.io.ByteArrayOutputStream
 
 
 class MonCompte : Fragment() {
@@ -43,7 +45,11 @@ class MonCompte : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == RC_SELECT_IMAGE && resultCode == Activity.RESULT_OK && data != null && data.data != null){
             val selectedImagepath = data.data
-            val selectedimage = MediaStore.Images.Media.getBitmap(activity?.contentResolver,selectedImagepath)
+            val selectedimageBmp = MediaStore.Images.Media.getBitmap(activity?.contentResolver,selectedImagepath)
+
+            val outputStream = ByteArrayOutputStream()
+            selectedimageBmp.compress(Bitmap.CompressFormat.JPEG,90,outputStream)
+            selectedImage = outputStream.toByteArray()
 
         }
 
