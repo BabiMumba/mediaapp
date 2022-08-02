@@ -44,8 +44,6 @@ class SigninActivity : AppCompatActivity() {
                     startActivity(intentFor<HomeActivity>().newTask().clearTask())
                     progresssdialog.dismiss()
                 }
-
-
             }
             else if (resultCode == Activity.RESULT_CANCELED){
                 if (response == null) return
