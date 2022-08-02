@@ -14,6 +14,7 @@ import com.babistone.kitumaini.R
 import com.babistone.kitumaini.SigninActivity
 import com.babistone.kitumaini.model.util.FirestoreUtil
 import com.babistone.kitumaini.model.util.Storage
+import com.bumptech.glide.Glide
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.data.model.User
 import kotlinx.android.synthetic.main.fragment_mon_compte.*
@@ -95,7 +96,12 @@ class MonCompte : Fragment() {
             if (this@MonCompte.isVisible){
                 editext_name.setText(user.name)
                 edittxt_bio.setText(user.name)
-                //if (!picturejustChanged && user.profipath != null )
+                if (!picturejustChanged && user.profipath != null )
+                    Glide.with(this)
+                        .load(Storage.pathToReference(user.profipath))
+                        .placeholder(R.drawable.ic_launcher)
+                        .into(imageUprofil)
+
             }
         }
     }
