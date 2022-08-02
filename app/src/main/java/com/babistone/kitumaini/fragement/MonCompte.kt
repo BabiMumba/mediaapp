@@ -84,7 +84,9 @@ class MonCompte : Fragment() {
             val outputStream = ByteArrayOutputStream()
             selectedimageBmp.compress(Bitmap.CompressFormat.JPEG,90,outputStream)
             selectedImage = outputStream.toByteArray()
-            //TODO: lead picture
+            Glide.with(this)
+                .load(selectedImage)
+                .into(imageUprofil)
             picturejustChanged = true
         }
 
